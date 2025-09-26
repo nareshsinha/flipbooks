@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 
-export function useFlipbook() {
+export function useFlipbook(totalPages: number = 20) {
   const [currentPage, setCurrentPage] = useState(0); // 0 = cover, 1+ = pages
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [soundEnabled, setSoundEnabled] = useState(true);
@@ -15,7 +15,7 @@ export function useFlipbook() {
     const interval = setInterval(() => {
       setCurrentPage((prev) => {
         // Auto-advance to next page, stop at end
-        if (prev >= 20) { // Assuming max 20 pages for demo
+        if (prev >= totalPages) {
           setAutoplayEnabled(false);
           return prev;
         }
@@ -24,15 +24,15 @@ export function useFlipbook() {
     }, 3000); // 3 seconds per page
 
     return () => clearInterval(interval);
-  }, [autoplayEnabled]);
+  }, [autoplayEnabled, totalPages]);
 
   const goToPage = useCallback((page: number) => {
-    setCurrentPage(page);
-  }, []);
+    setCurrentPage(Math.max(0, Math.min(page, totalPages)));
+  }, [totalPages]);
 
   const nextPage = useCallback(() => {
-    setCurrentPage((prev) => Math.min(prev + 1, 20)); // Max 20 pages
-  }, []);
+    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+  }, [totalPages]);
 
   const prevPage = useCallback(() => {
     setCurrentPage((prev) => Math.max(prev - 1, 0));

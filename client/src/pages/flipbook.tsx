@@ -28,7 +28,7 @@ export default function FlipBookPage() {
     toggleAutoplay,
     setZoomLevel,
     toggleThumbnails,
-  } = useFlipbook();
+  } = useFlipbook(documentData?.pages?.length || 0);
 
   if (!documentId) {
     return <UploadInterface />;
