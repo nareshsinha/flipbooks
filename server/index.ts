@@ -4,7 +4,9 @@ import { setupVite, serveStatic, log } from "./vite";
 
 const app = express();
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+
+// IMPORTANT: Only use body parsing for JSON routes, not for file uploads
+// We'll apply this selectively to non-file routes in registerRoutes
 
 app.use((req, res, next) => {
   const start = Date.now();

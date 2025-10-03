@@ -58,20 +58,40 @@
   }
 
   body {
-    @apply font-sans antialiased bg-background text-foreground;
+    @apply font-sans antialiased bg-red-700 text-foreground;
   }
-}
+} 
 
 /* Custom flipbook styles */
 .book-container {
   perspective: 2000px;
   perspective-origin: center center;
+  transform-origin: center center;
+  transition: transform 0.3s ease;
+  max-width: 100%;
+  max-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: grab;
 }
+.book-container.dragging {cursor: grabbing;transition: none;}
+.book.zoom-mode {cursor: grab;}
+.book.zoom-mode.dragging {cursor: grabbing;}
+/* Reset view button style */
+.toolbar-button.reset-view {background: #f0f0f0;border: 1px solid #ddd;}
+.toolbar-button.reset-view:hover {background: #e0e0e0;}
+/* Hide page navigation clicks when zoomed */
+.book.zoom-mode .page {pointer-events: none;}
+.book.zoom-mode .page .page-content {pointer-events: auto;}
 
+.logoimage  { display: block; margin-left: auto;margin-right: auto;}
+.logo-border {border-bottom: 1px solid #e9e9e9;}
 .book {
   position: relative;
-  width: 800px;
-  height: 600px;
+  top: 100px;
+  width: 70%;
+  height: 950px;
   margin: 0 auto;
   transform-style: preserve-3d;
   transition: transform 0.6s ease-in-out;
@@ -80,7 +100,7 @@
 .page {
   position: absolute;
   width: 50%;
-  height: 100%;
+  height: max-content;
   background: white;
   border-radius: 0 8px 8px 0;
   box-shadow: 0 4px 20px rgba(0,0,0,0.3);
@@ -110,7 +130,7 @@
 .page-content {
   width: 100%;
   height: 100%;
-  padding: 20px;
+  padding: 5px;
   background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
   border-radius: inherit;
   position: relative;
@@ -119,7 +139,9 @@
 .cover-page {
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, hsl(210, 90%, 65%) 0%, hsl(250, 60%, 50%) 100%);
+  /* background: linear-gradient(135deg, hsl(210, 90%, 65%) 0%, hsl(250, 60%, 50%) 100%); 
+  background: linear-gradient(135deg, #F44336 0%, hsl(353.82deg 100% 50%) 100%); */
+  background: #fff;
   border-radius: 8px;
   display: flex;
   align-items: center;
@@ -127,73 +149,58 @@
   flex-direction: column;
   color: white;
   text-align: center;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  box-shadow: 0 8px 32px rgba(194, 192, 192, 0.4);
   cursor: pointer;
   transition: transform 0.3s ease;
 }
 
-.cover-page:hover {
-  transform: scale(1.02);
+.cover-page:hover {transform: scale(1.02); }
+.cover-content {position: relative;z-index: 2;color: white;}
+/*
+.toolbar {position: fixed;top: 20px;left: 50%;transform: translateX(-50%);z-index: 1000;background: rgba(45, 55, 72, 0.95);backdrop-filter: blur(10px);border-radius: 12px;padding: 8px 16px;box-shadow: 0 4px 20px rgba(0,0,0,0.4);display: flex;align-items: center;gap: 8px;}
+.toolbar-btn {background: transparent !important;border: none;color: #fff !important;padding: 8px 12px;border-radius: 8px;cursor: pointer;transition: all 0.2s ease;font-size: 16px;}
+.toolbar-btn:hover {background: rgba(66, 153, 225, 0.2) !important;color: #4299e1 !important;}
+.toolbar-btn.active {  background: #4299e1 !important; color: #1a1a1a !important; }
+*/
+.toolbar {position: fixed;top: 20px;left: 50%;transform: translateX(-50%);z-index: 1000;background: rgba(185, 28, 28, 0.95); backdrop-filter: blur(10px);border-radius: 12px;padding: 8px 16px; box-shadow: 0 4px 20px rgba(185, 28, 28, 0.6);   display: flex;  align-items: center;  gap: 8px;border: 1px #fff solid;}
+.toolbar-btn {background: transparent !important;border: none;color: #fff !important;padding: 8px 12px;border-radius: 8px;cursor: pointer;transition: all 0.2s ease;font-size: 16px;}
+.toolbar-btn:hover {background: rgba(255, 69, 58, 0.2) !important;color: #ff453a !important;}
+.toolbar-btn.active {background: #ff453a !important;color: #1a1a1a !important;}
+/* FIXED ZOOM CONTAINER */
+.zoom-container {
+  width: 100%;
+  height: calc(100% - 120px);
+  margin-top: 80px;
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
 }
-
-.toolbar {
+.zoom-level {
   position: fixed;
-  top: 20px;
+  top: 80px;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 1000;
-  background: rgba(45, 55, 72, 0.95);
-  backdrop-filter: blur(10px);
-  border-radius: 12px;
+  background: rgba(45, 55, 72, 0.9);
   padding: 8px 16px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.toolbar-btn {
-  background: transparent !important;
-  border: none;
-  color: #f7fafc !important;
-  padding: 8px 12px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  font-size: 16px;
-}
-
-.toolbar-btn:hover {
-  background: rgba(66, 153, 225, 0.2) !important;
-  color: #4299e1 !important;
-}
-
-.toolbar-btn.active {
-  background: #4299e1 !important;
-  color: #1a1a1a !important;
-}
-
-.pagination {
-  position: fixed;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1000;
-  background: rgba(45, 55, 72, 0.95);
+  border-radius: 20px;
+  font-size: 14px;
+  color: var(--foreground);
+  z-index: 999;
   backdrop-filter: blur(10px);
-  border-radius: 12px;
-  padding: 12px 20px;
-  color: #f7fafc;
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  gap: 16px;
+  transition: opacity 0.3s ease;
 }
+
+.pagination {position: fixed;bottom: 10px;left: 50%;transform: translateX(-50%);z-index: 1000;background: rgba(185, 28, 28, 0.95); backdrop-filter: blur(10px);border-radius: 12px;padding:8px 12px;color: #f7fafc;font-weight: 500;display: flex;align-items: center;gap: 16px;box-shadow: 0 4px 20px rgba(185,28,28,0.6); border: 1px #fff solid;}
+.pagination-btn {background: transparent;border: none;color: #fff;padding: 8px 12px;border-radius: 8px;cursor: pointer;transition: all 0.2s ease;font-size: 16px;}
+.pagination-btn:hover {background: rgba(255, 69, 58, 0.2);color: #ff453a;}
+.pagination-btn.active {background: #ff453a;color: #1a1a1a;}
 
 .navigation-slider {
   position: fixed;
-  bottom: 90px;
-  left: 50%;
+  bottom: 10px;
+  left: 40%;
   transform: translateX(-50%);
   z-index: 1000;
   width: 300px;
@@ -201,6 +208,7 @@
   backdrop-filter: blur(10px);
   border-radius: 12px;
   padding: 16px;
+  display: none;
 }
 
 .thumbnails-panel {
@@ -217,9 +225,7 @@
   padding: 80px 20px 20px;
 }
 
-.thumbnails-panel.open {
-  right: 0;
-}
+.thumbnails-panel.open {right: 0;}
 
 .thumbnail {
   width: 100%;
@@ -232,6 +238,7 @@
   border: 2px solid transparent;
   overflow: hidden;
   position: relative;
+  height: 175px;
 }
 
 .thumbnail:hover {
@@ -292,31 +299,80 @@
   z-index: 9999;
   background: var(--background);
 }
+.coverimg {height: 950px; padding-top: 50px;}
+button.hover :text-primary:hover {color: hsl(3.35deg 100% 61.37%) !important;} 
+ 
+.pgbtnP:focus{  background-color: transparent !important;}
+.pgbtnP{background-color: transparent !important;}
+.pgbtnP:hover{background-color: white !important;}
+.pgbtn {color: #FFF !important;transition: all 0.3s ease !important;background-color: transparent !important;}
+.pgbtn:hover:not(:disabled) {background-color: rgba(239, 68, 68, 0.8) !important;transform: translateY(-1px);box-shadow: 0 4px 8px rgba(239, 68, 68, 0.3);}
+.pgbtn:active:not(:disabled) {background-color: rgba(185, 28, 28, 0.9) !important;transform: translateY(0);}
+.pgbtn:disabled {opacity: 0.5;cursor: not-allowed;}
 
-@media (max-width: 768px) {
-  .book {
-    width: 90vw;
-    height: 67.5vw;
-    max-width: 600px;
-    max-height: 450px;
-  }
+.navigation-controls {
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 12px;
+padding: 16px;
+background: rgba(255, 255, 255, 0.95);
+border-radius: 12px;
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+margin: 16px auto;
+max-width: 400px;
+}
+
+/* Page Range Display */
+.page-range-display {margin-bottom: 8px;}
+.page-range-text {font-size: 16px;font-weight: 400;color: #FFF;background: rgba(220, 38, 38, 0.1);padding: 6px 12px;border-radius: 20px;border: 1px solid rgba(220, 38, 38, 0.2);display: inline-block;min-width: 120px;text-align: center;}
+.navigation-buttons {display: flex;align-items: center;gap: 20px;width: 100%;justify-content: center;}
+
+@media screen and (max-width: 768px) {
+  .title {font-size: 2rem; }
+  .subtitle {font-size: 1rem; }
+  /*.book {width: 90vw;height: 67.5vw;max-width: 600px;max-height: 450px;} */
+  .book {width: 90vw ;max-width: 600px; top: 150px;}
+  .toolbar {top: 10px;padding: 6px 12px;}
+  .toolbar-btn {padding: 6px 8px;font-size: 14px;}
+  .navigation-slider {width: 250px;bottom: 70px;}
+  .thumbnails-panel {width: 300px;}
+  .coverimg {height: 550px;padding-top: 0; }
+  .cover-page {height: auto;flex-direction: row;}
+}
+
+@media screen and  (max-width: 480px) {
+  .header {padding: 1.5rem 0;}
+  .title {font-size: 1.75rem;}
+  .upload-section {padding: 2rem 0;}
+  .features-section {padding: 2rem 0;}
+  .section-title {font-size: 1.5rem;margin-bottom: 2rem;}
+  .feature-card {padding: 1.5rem;}
+  .book1111 {height: 100%;} 
+  .pagination {width: 75%; padding: 6px 12px;}
+  .flipbook-container {height: 900px;}
+  .page {height:auto ; width:  100%;}
+  .page-content {width: 100%;}
+  .thumbnail {height: 175px;} 
+  .coverimg {height: 550px; }
+
+  .flipbook-container.mobile .book-container {width: 100%;max-width: 100%;}
+  .flipbook-container.mobile .book {width: 100%;max-width: 100%;display: flex;justify-content: center;align-items: center; top:0px;}
+  .flipbook-container.mobile .mobile-page {width: 95%;max-width: 400px;height: max-content;margin: 0 auto;position: relative;background: white;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);border-radius: 8px;overflow: hidden;cursor: pointer;}
+  .flipbook-container.mobile .cover-page.mobile-cover {width: 90%;max-width: 400px;height: max-content;margin: 0 auto;}
+  /* Desktop styles remain the same */
+  .flipbook-container.desktop .book {display: flex;perspective: 1200px;}
+  .flipbook-container.desktop .page-left,.flipbook-container.desktop .page-right {width: 45vw;max-width: 400px;height: 60vh;}
   
-  .toolbar {
-    top: 10px;
-    padding: 6px 12px;
-  }
-  
-  .toolbar-btn {
-    padding: 6px 8px;
-    font-size: 14px;
-  }
-  
-  .navigation-slider {
-    width: 250px;
-    bottom: 70px;
-  }
-  
-  .thumbnails-panel {
-    width: 300px;
-  }
+}
+
+/* iOS-specific fixes */
+@supports (-webkit-touch-callout: none) {
+  .toolbar, .pagination { -webkit-backdrop-filter: blur(10px); }
+  .flipbook-container { -webkit-overflow-scrolling: touch; }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .book { image-rendering: -webkit-optimize-contrast; }
 }

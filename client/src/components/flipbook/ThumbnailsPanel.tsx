@@ -53,10 +53,14 @@ export default function ThumbnailsPanel({
                 data-testid={`thumbnail-page-${page.pageNumber}`}
               >
                 <img
-                  src={page.thumbnailUrl}
+                  src={page.thumbnailPath}
                   alt={`Page ${page.pageNumber} thumbnail`}
                   className="w-full h-full object-cover rounded"
                   loading="lazy"
+                  onError={(e) => {
+                    console.error('Failed to load image:', page.thumbnailPath);
+                    // Add fallback handling
+                  }}
                 />
                 <div className="absolute bottom-2 right-2 bg-black bg-opacity-60 text-white px-2 py-1 rounded text-xs">
                   {page.pageNumber}

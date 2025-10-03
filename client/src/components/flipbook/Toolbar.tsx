@@ -24,6 +24,7 @@ interface ToolbarProps {
   onToggleAutoplay: () => void;
   onToggleThumbnails: () => void;
   onToggleFullscreen: () => void;
+  onResetView: () => void;
 }
 
 export default function Toolbar({
@@ -113,7 +114,7 @@ export default function Toolbar({
         <Maximize className="w-4 h-4" />
       </Button>
 
-      <Button
+      {/* <Button
         variant="ghost"
         size="sm"
         onClick={() => setLocation("/")}
@@ -122,7 +123,7 @@ export default function Toolbar({
         title="New Book"
       >
         <Upload className="w-4 h-4" />
-      </Button>
+      </Button> */}
     </div>
   );
 }

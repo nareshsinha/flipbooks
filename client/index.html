@@ -1,14 +1,360 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Fira+Code:wght@300..700&family=Geist+Mono:wght@100..900&family=Geist:wght@100..900&family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400..700;1,400..700&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Outfit:wght@100..900&family=Oxanium:wght@200..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&family=Space+Grotesk:wght@300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <title>FQ Magazine</title>
+  <meta name="Keywords"
+    content="Digital Magazine, Digital Edition, e-replica, e publishing, digital publishing software, eMag, PageFlip, 3dissue, 3D Issue">
+  <meta name="Description" content="">
+  <link rel="shortcut icon" href="/src/favicon.ico" type="image/x-icon">
+  <meta http-equiv="x-ua-compatible" content="IE=edge">
+  <meta property="fb:app_id" content="449283325123417" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="FQ Magazine" />
+  <meta property="og:image" content="https://img-2.outlookindia.com/outlook-business/olb-def-img.png">
+  <meta property="og:description" content="" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="msapplication-tap-highlight" content="no" />
+  <link rel="apple-touch-icon" href="html5/resources/ipad.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Fira+Code:wght@300..700&family=Geist+Mono:wght@100..900&family=Geist:wght@100..900&family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400..700;1,400..700&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Outfit:wght@100..900&family=Oxanium:wght@200..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&family=Space+Grotesk:wght@300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+  <div class="container-fluid">
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
+  </div>
+</body>
+<script>
+        // Device detection
+        function isMobile() {
+            return window.innerWidth <= 768;
+        }
+
+        function isIOS() {
+            return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        }
+
+        // Upload functionality
+        document.getElementById('upload-btn').addEventListener('click', function() {
+            document.getElementById('file-input').click();
+        });
+
+        document.getElementById('file-input').addEventListener('change', function(e) {
+            if (e.target.files.length > 0) {
+                handleFileUpload(e.target.files[0]);
+            }
+        });
+
+        const uploadZone = document.getElementById('upload-zone');
+        
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            uploadZone.addEventListener(eventName, preventDefaults, false);
+        });
+
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+
+        ['dragenter', 'dragover'].forEach(eventName => {
+            uploadZone.addEventListener(eventName, () => uploadZone.classList.add('drag-over'), false);
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            uploadZone.addEventListener(eventName, () => uploadZone.classList.remove('drag-over'), false);
+        });
+
+        uploadZone.addEventListener('drop', function(e) {
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                handleFileUpload(files[0]);
+            }
+        });
+
+        function handleFileUpload(file) {
+            if (file.type !== 'application/pdf') {
+                alert('Please upload a PDF file');
+                return;
+            }
+
+            if (file.size > 50 * 1024 * 1024) {
+                alert('File size must be less than 50MB');
+                return;
+            }
+
+            // Show loading state
+            uploadZone.innerHTML = '<div class="loading-spinner"></div><p>Processing PDF...</p>';
+
+            // Simulate processing delay
+            setTimeout(() => {
+                // In a real app, you would upload the file to your server here
+                // For this demo, we'll just show the flipbook with sample pages
+                showFlipbook(file.name);
+            }, 2000);
+        }
+
+        function showFlipbook(filename) {
+            document.getElementById('upload-interface').style.display = 'none';
+            document.getElementById('flipbook-viewer').style.display = 'block';
+            
+            // Set document title
+            document.title = filename.replace('.pdf', '') + ' - Flipbook';
+            
+            // Initialize flipbook with sample pages
+            initializeFlipbook();
+        }
+
+        // ZOOM VARIABLES
+        let currentZoom = 1;
+        const minZoom = 0.5;
+        const maxZoom = 3;
+        const zoomStep = 0.25;
+
+        function initializeFlipbook() {
+            // Sample implementation - in a real app, you would load actual PDF pages
+            const totalPages = 10;
+            document.getElementById('total-pages').textContent = totalPages;
+            
+            // Add event listeners for controls
+            document.getElementById('prev-btn').addEventListener('click', prevPage);
+            document.getElementById('next-btn').addEventListener('click', nextPage);
+            document.getElementById('zoom-in-btn').addEventListener('click', zoomIn);
+            document.getElementById('zoom-out-btn').addEventListener('click', zoomOut);
+            document.getElementById('sound-btn').addEventListener('click', toggleSound);
+            document.getElementById('thumbnails-btn').addEventListener('click', toggleThumbnails);
+            document.getElementById('fullscreen-btn').addEventListener('click', toggleFullscreen);
+            
+            // Add swipe support for mobile
+            if (isMobile()) {
+                enableSwipeNavigation();
+            }
+            
+            // Generate thumbnails
+            generateThumbnails(totalPages);
+            
+            // Initialize zoom
+            updateZoomDisplay();
+        }
+
+        let currentPage = 1;
+        let soundEnabled = true;
+
+        function prevPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                updatePageDisplay();
+                playPageTurnSound();
+            }
+        }
+
+        function nextPage() {
+            // In a real app, you would check against the actual page count
+            if (currentPage < 10) {
+                currentPage++;
+                updatePageDisplay();
+                playPageTurnSound();
+            }
+        }
+
+        function updatePageDisplay() {
+            document.getElementById('page-info').textContent = `Page ${currentPage} of 10`;
+            document.getElementById('current-page').textContent = currentPage;
+            
+            // Update active thumbnail
+            document.querySelectorAll('.thumbnail').forEach((thumb, index) => {
+                if (index + 1 === currentPage) {
+                    thumb.classList.add('active');
+                } else {
+                    thumb.classList.remove('active');
+                }
+            });
+        }
+
+        // FIXED ZOOM FUNCTIONS
+        function zoomIn() {
+            if (currentZoom < maxZoom) {
+                currentZoom += zoomStep;
+                applyZoom();
+            }
+        }
+
+        function zoomOut() {
+            if (currentZoom > minZoom) {
+                currentZoom -= zoomStep;
+                applyZoom();
+            }
+        }
+
+        function applyZoom() {
+            const bookContainer = document.getElementById('book-container');
+            bookContainer.style.transform = `scale(${currentZoom})`;
+            updateZoomDisplay();
+            
+            // Show zoom level indicator
+            const zoomLevel = document.getElementById('zoom-level');
+            zoomLevel.style.display = 'block';
+            
+            // Hide after 2 seconds
+            clearTimeout(window.zoomTimeout);
+            window.zoomTimeout = setTimeout(() => {
+                zoomLevel.style.display = 'none';
+            }, 2000);
+        }
+
+        function updateZoomDisplay() {
+            document.getElementById('zoom-percent').textContent = Math.round(currentZoom * 100) + '%';
+            
+            // Update button states
+            document.getElementById('zoom-in-btn').disabled = currentZoom >= maxZoom;
+            document.getElementById('zoom-out-btn').disabled = currentZoom <= minZoom;
+        }
+
+        function toggleSound() {
+            soundEnabled = !soundEnabled;
+            const soundBtn = document.getElementById('sound-btn');
+            if (soundEnabled) {
+                soundBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+            } else {
+                soundBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+            }
+        }
+
+        function playPageTurnSound() {
+            if (!soundEnabled) return;
+            
+            // Simple page turn sound using Web Audio API
+            try {
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                oscillator.type = 'sine';
+                oscillator.frequency.setValueAtTime(600, audioContext.currentTime);
+                oscillator.frequency.exponentialRampToValueAtTime(150, audioContext.currentTime + 0.3);
+                
+                gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                oscillator.start();
+                oscillator.stop(audioContext.currentTime + 0.3);
+            } catch (error) {
+                console.error('Audio error:', error);
+            }
+        }
+
+        function toggleThumbnails() {
+            const panel = document.getElementById('thumbnails-panel');
+            panel.classList.toggle('open');
+        }
+
+        function toggleFullscreen() {
+            const flipbook = document.getElementById('flipbook-viewer');
+            if (!document.fullscreenElement) {
+                if (flipbook.requestFullscreen) {
+                    flipbook.requestFullscreen();
+                } else if (flipbook.webkitRequestFullscreen) {
+                    flipbook.webkitRequestFullscreen(); // Safari
+                } else if (flipbook.msRequestFullscreen) {
+                    flipbook.msRequestFullscreen(); // IE/Edge
+                }
+                flipbook.classList.add('fullscreen');
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+                flipbook.classList.remove('fullscreen');
+            }
+        }
+
+        function enableSwipeNavigation() {
+            let touchStartX = 0;
+            let touchEndX = 0;
+            
+            const flipbook = document.getElementById('flipbook-viewer');
+            
+            flipbook.addEventListener('touchstart', e => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, false);
+            
+            flipbook.addEventListener('touchend', e => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }, false);
+            
+            function handleSwipe() {
+                const swipeThreshold = 50;
+                const swipeDistance = touchEndX - touchStartX;
+                
+                if (Math.abs(swipeDistance) < swipeThreshold) return;
+                
+                if (swipeDistance > 0) {
+                    // Swipe right - previous page
+                    prevPage();
+                } else {
+                    // Swipe left - next page
+                    nextPage();
+                }
+            }
+        }
+
+        function generateThumbnails(totalPages) {
+            const container = document.getElementById('thumbnails-container');
+            container.innerHTML = '';
+            
+            for (let i = 1; i <= totalPages; i++) {
+                const thumbnail = document.createElement('div');
+                thumbnail.className = 'thumbnail';
+                if (i === 1) thumbnail.classList.add('active');
+                
+                // In a real app, you would use actual page thumbnails
+                thumbnail.innerHTML = `
+                    <div style="width: 100%; height: 100%; background: #e2e8f0; display: flex; align-items: center; justify-content: center; color: #4a5568; font-weight: bold;">
+                        Page ${i}
+                    </div>
+                `;
+                
+                thumbnail.addEventListener('click', () => {
+                    currentPage = i;
+                    updatePageDisplay();
+                    toggleThumbnails();
+                });
+                
+                container.appendChild(thumbnail);
+            }
+        }
+
+        // Initialize the app
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add device-specific classes
+            if (isMobile()) {
+                document.body.classList.add('mobile');
+            }
+            if (isIOS()) {
+                document.body.classList.add('ios');
+            }
+            
+            // Add fade-in animation to elements
+            const elements = document.querySelectorAll('.feature-card, .upload-zone');
+            elements.forEach((el, index) => {
+                el.style.animationDelay = `${index * 0.1}s`;
+            });
+        });
+    </script>
 </html>

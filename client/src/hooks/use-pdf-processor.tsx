@@ -17,11 +17,18 @@ export function usePdfProcessor() {
 
   const uploadMutation = useMutation({
     mutationFn: async ({ file, title }: { file: File; title: string }) => {
+      console.log('Starting upload process...');
       setState({ isProcessing: true, progress: 0, error: null });
 
       const formData = new FormData();
       formData.append('pdf', file);
       formData.append('title', title);
+      
+      console.log('FormData created:', {
+        file: file.name,
+        title: title,
+        formDataHasFile: formData.has('pdf')
+      });
 
       // Simulate progress updates
       const progressInterval = setInterval(() => {
@@ -32,14 +39,27 @@ export function usePdfProcessor() {
       }, 200);
 
       try {
-        const response = await apiRequest('POST', '/api/documents/upload', formData);
+        console.log('Sending API request...');
+
+        //const response = await apiRequest('POST', '/api/documents/upload', formData);
+        const response = await fetch('/api/documents/upload', {
+          method: 'POST',
+          body: formData,
+          // headers are automatically set by browser for FormData
+        });
+        console.log('Response status:', response.status);  
+        if (!response.ok) {
+          const errorData = await response.json().catch(() => ({ message: 'Upload failed' }));
+          throw new Error(errorData.message || `Upload failed with status ${response.status}`);
+        }
+
         const data = await response.json();
-        
         clearInterval(progressInterval);
         setState({ isProcessing: false, progress: 100, error: null });
-        
         return data;
-      } catch (error) {
+      } 
+      catch (error) 
+      {
         clearInterval(progressInterval);
         setState({ 
           isProcessing: false, 
@@ -48,6 +68,7 @@ export function usePdfProcessor() {
         });
         throw error;
       }
+
     },
   });
 
@@ -63,9 +84,14 @@ export function usePdfProcessor() {
     return null;
   }, []);
 
+  const reset = useCallback(() => {
+    setState({ isProcessing: false, progress: 0, error: null });
+  }, []);
+
   return {
     ...state,
     uploadMutation,
     validateFile,
+    reset
   };
 }

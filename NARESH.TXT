@@ -1,0 +1,41 @@
+Flip-Book Project
+
+`V1.0`
+
+npm i
+npm install cross-env --save-dev
+npm install -g cross-env
+cross-env NODE_ENV=development npx tsx server/index.ts
+set NODE_ENV=production && npm start
+cross-env NODE_ENV=development npx tsx server/index.ts
+
+npx update-browserslist-db@latest
+npm install pdfjs-dist
+npm install pdf-parse
+npm install pdf-page-counter
+
+
+npm install pdf2pic
+npm install graphicsmagick
+npm install pdfjs-dist canvas
+npm install @types/node 
+npm install pdfjs-dist
+
+npm install pdf-poppler
+
+npm uninstall pdfjs-dist
+npm install pdfjs-dist@2.16.105
+
+
+npm run dev
+
+`V1.1`
+
+npm install better-sqlite3
+npm install @types/better-sqlite3 --save-dev
+npm install bcryptjs
+
+
+https://nodlik.github.io/StPageFlip/
+
+npm install --save-dev cross-env
