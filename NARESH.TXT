@@ -39,3 +39,5 @@ npm install bcryptjs
 https://nodlik.github.io/StPageFlip/
 
 npm install --save-dev cross-env
+npm install -g serve
+https://vercel.com/mrnareshsinhagmailcoms-projects
